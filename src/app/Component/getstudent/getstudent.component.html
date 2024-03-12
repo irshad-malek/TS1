@@ -1,0 +1,29 @@
+<div class="container">
+    <form [formGroup]="updateStudentForm" >
+        <input type="hidden" formControlName="Id"/>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">FirstName</label>
+            <input type="text" class="form-control" formControlName="FirstName" id="exampleInputEmail1" [attr.disabled]="true"
+                aria-describedby="emailHelp" required>
+           
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">LastName</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="LastName" [attr.disabled]="true">
+           
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">EmailAddress</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="EmailAddress" [attr.disabled]="true">
+            
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">EnrollDate</label>
+            <input type="datetime-local" class="form-control" id="exampleInputPassword1" [attr.disabled]="true" formControlName="EnrollDate"
+            >
+            
+        </div>
+
+        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    </form>
+</div>

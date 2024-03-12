@@ -1,0 +1,86 @@
+<!-- to list data of student -->
+<div class="container">
+  <div class="table-title">
+
+    <div class="container" >
+      <div class="row">
+        <div class="text-end">
+          <a routerLink="/add-Student" routerLinkActive="active" ariaCurrentWhenActive="page"
+            class="btn btn-primary p-2" routerLink="/AddStudent">Add Student</a>
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-4">
+      <input type="text" [(ngModel)]="nameFilter" (input)="filterData()" placeholder="Search">
+    </div>
+    <div class="container-xl" *ngIf="filteredData.length!=0">
+      <div class="container">
+       
+        <h1>Student Information</h1>
+        <table class="table table-striped table-hover table-bordered table-content" id="myDataTable" >
+          <thead>
+            <tr>
+              <th>Name of student</th>
+              <th>Last Name</th>
+              <th>Email Address</th>
+              <th>Enroll Date</th>
+              <!-- <th>CourseName</th> -->
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container>
+              <tr *ngFor="let student of filteredData | paginate: { itemsPerPage: 10, currentPage: Index }; let i = index">
+                <td>{{student.firstName}}</td>
+                <td>{{student.lastName}}</td>
+                <td>{{student.emailAddress}}</td>
+                <td>{{student.enrollDate| date:'dd/MM/yyyy'}}</td>
+                <!-- <td>{{currentCourse(student.id)}}</td> -->
+                <td>
+                  <a [routerLink]="['/Details/',student.id]" class="btn btn-warning"><i class="bi bi-info-circle-fill"></i></a>
+                  <a [routerLink]="['/Edit/',student.id]" class="btn btn-primary"><i class="bi bi-pencil-square"></i>
+                  </a>
+                  <button class="btn btn-danger" (click)="openPopup(student.id)"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+       
+      </div>
+    </div>
+    
+  </div>
+  <div *ngIf="filteredData.length==0">
+    <p>No results found for "{{nameFilter}}".</p>
+  </div>
+  <pagination-controls *ngIf="filteredData.length!=0" (pageChange)=" Index= $event"></pagination-controls>
+
+ 
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}"> 
+  <div class="modal-dialog" role="document"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h4 class="modal-title">Delete</h4> 
+      </div> 
+      <div class="modal-body"> 
+        <p>Are You sure you want to delete?</p> 
+  
+      </div> 
+      <div class="modal-footer"> 
+        <button type="button" class="btn btn-danger" 
+                (click)="deleteStudent()"> 
+          Delete 
+        </button> 
+        <button type="button" class="btn btn-primary" 
+                (click)="closePopup()"> 
+          Close 
+        </button> 
+      </div> 
+    </div> 
+  </div> 
+</div>

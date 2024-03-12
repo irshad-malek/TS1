@@ -1,0 +1,42 @@
+<div class="container">
+    <form [formGroup]="updateStudentForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" formControlName="Id"/>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">FirstName</label>
+            <input type="text" class="form-control" formControlName="FirstName" id="exampleInputEmail1"
+                aria-describedby="emailHelp" required>
+            <div *ngIf="submitted && f.FirstName.errors" class="text-danger">
+                <div *ngIf="f.FirstName.errors.required">FirstName is required</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">LastName</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="LastName" required>
+            <div *ngIf="submitted && f.LastName.errors" class="text-danger">
+                <div *ngIf="f.LastName.errors.required">LastName is required</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">EmailAddress</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="EmailAddress" required uniqueUsernamevalue>
+            <div *ngIf="submitted && f.EmailAddress.errors" class="text-danger">
+                <div *ngIf="f.EmailAddress.errors.required">EmailAddress is required</div>
+                <!-- <div *ngIf="f.email.errors.email">Email must be a valid email address</div> -->
+            </div>
+            <div >
+                <div class="text-danger" *ngIf="f.EmailAddress.errors?.Email">EmailAddress is exist</div>
+                <!-- <div *ngIf="f.email.errors.email">Email must be a valid email address</div> -->
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">EnrollDate</label>
+            <input type="datetime-local" class="form-control" id="exampleInputPassword1" formControlName="EnrollDate"
+                required>
+            <div *ngIf="submitted && f.EnrollDate.errors" class="text-danger">
+                <div *ngIf="f.EnrollDate.errors.required">EnrollDate is required</div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
